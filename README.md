@@ -1,4 +1,4 @@
-\# OpenClaw + Ollama (GPU Accelerated)
+# OpenClaw + Ollama (GPU Accelerated)
 
 
 
@@ -6,41 +6,39 @@ This repository provides a unified Docker environment for running \*\*OpenClaw\*
 
 
 
-\## 🚀 Quick Start
+## 🚀 Quick Start
 
 
 
-\### 1. Prerequisites
+### 1. Prerequisites
 
-\- \*\*Docker Desktop\*\* or \*\*Docker Engine\*\* installed.
+- \*\*Docker Desktop\*\* or \*\*Docker Engine\*\* installed.
 
-\- \*\*NVIDIA Container Toolkit\*\* installed (for GPU support).
+- \*\*NVIDIA Container Toolkit\*\* installed (for GPU support).
 
-\- Docker version 19.03 or higher (for `--gpus all` support).
+- Docker version 19.03 or higher (for `--gpus all` support).
 
 
 
-\### 2. Project Structure
+### 2. Project Structure
 
 Ensure your local directories for persistence exist on your host machine (update these paths in the run command if necessary):
 
-\- `D:/ai/ollama` (For LLM models)
+- `D:/ai/ollama` (For LLM models)
 
-\- `D:/ai/openclaw` (For configuration and logs)
+- `D:/ai/openclaw` (For configuration and logs)
 
-
-
-\### 3. Build the Image
+### 3. Build the Image
 
 From the root of this repository, run:
 
 ```bash
 
 docker build -t openclaw-ollama .
+```
 
 
-
-\### 4. Run docker image
+### 4. Run docker image
 
 ```bash
 
@@ -50,7 +48,7 @@ docker run -d --gpus=all -v //d/ai/ollama:/root/.ollama/models -v //d/ai/opencla
 
 
 
-\### 5.
+### 5.
 
 ```bash
 docker ps #find id of openclaw-ollama container
@@ -58,8 +56,6 @@ docker exec -it \\\[container-id] sh
 openclaw onboard --install-daemon
 
 openclaw gateway --bind lan
-
-```
 
 ```
 
