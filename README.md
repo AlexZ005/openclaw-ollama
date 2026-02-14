@@ -12,9 +12,9 @@ This repository provides a unified Docker environment for running \*\*OpenClaw\*
 
 ### 1. Prerequisites
 
-- \*\*Docker Desktop\*\* or \*\*Docker Engine\*\* installed.
+- **Docker Desktop** or **Docker Engine** installed.
 
-- \*\*NVIDIA Container Toolkit\*\* installed (for GPU support).
+- **NVIDIA Container Toolkit** installed (for GPU support).
 
 - Docker version 19.03 or higher (for `--gpus all` support).
 
@@ -33,7 +33,6 @@ Ensure your local directories for persistence exist on your host machine (update
 From the root of this repository, run:
 
 ```bash
-
 docker build -t openclaw-ollama .
 ```
 
@@ -41,63 +40,32 @@ docker build -t openclaw-ollama .
 ### 4. Run docker image
 
 ```bash
-
 docker run -d --gpus=all -v //d/ai/ollama:/root/.ollama/models -v //d/ai/openclaw:/root/.openclaw -p 11435:11435 -p 18789:18789 --name openclaw-ollama openclaw-ollama
-
 ```
 
 
 
-### 5.
+### 5. Access container and run openclaw
 
 ```bash
 docker ps #find id of openclaw-ollama container
-docker exec -it \\\[container-id] sh
+docker exec -it [container-id] sh
 openclaw onboard --install-daemon
-
-openclaw gateway --bind lan
-
-```
-
-
-
-Note: this will generate openclaw config run again step 4
-
-
-
-\### 6. Access container to get token
-
-```bash
-
-docker ps #find id of openclaw-ollama container
-
-docker exec -it \[container-id] sh
-
+openclaw gateway --bind lan &
 openclaw config get gateway.auth.token
-
 ```
 
+Note: this will generate openclaw config
 
+### 6. Access ollama or openclaw dashboard
 
-\### 7. Access ollama or openclaw dashboard
+#### OpenClaw dashboard
+`http://localhost:18789/chat?token=[token]`
 
+#### Ollama endpoint
+`curl localhost:11435`
 
+### 7. Approve device
 
-\#### OpenClaw dashboard
-
-http://localhost:18789/chat?token=\[token]
-
-\#### Ollama endpoint
-
-curl localhost:11435
-
-
-
-\### 8. Approve device
-
-
-
-openclaw devices list  
-
-openclaw devices approve \[device-id]  
-
+`openclaw devices list`
+`openclaw devices approve [device-id]`
