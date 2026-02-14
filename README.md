@@ -59,7 +59,7 @@ openclaw onboard --install-daemon
 
 openclaw gateway --bind lan
 
-
+```
 
 ```
 
