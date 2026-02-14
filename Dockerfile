@@ -18,9 +18,7 @@ RUN npm install -g openclaw@latest
 # 3. Create a startup script to handle both services
 RUN echo '#!/bin/bash\n\
 ollama serve &\n\
-sleep 5\n\
-openclaw onboard --install-daemon\n\
-openclaw gateway --bind lan\n\
+ollama run qwen3:8b\n\
 wait' > /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 # Expose the ports you defined

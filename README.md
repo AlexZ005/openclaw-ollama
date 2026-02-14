@@ -42,21 +42,11 @@ docker build -t openclaw-ollama .
 
 \### 4. Run docker image
 
-docker run -d \\
+```bash
 
-&nbsp; --gpus=all \\
+docker run -d --gpus=all -v //d/ai/ollama:/root/.ollama/models -v //d/ai/openclaw:/root/.openclaw -p 11435:11435 -p 18789:18789 --name openclaw-ollama openclaw-ollama
 
-&nbsp; -v //d/ai/ollama:/root/.ollama \\
-
-&nbsp; -v //d/ai/openclaw:/root/.openclaw \\
-
-&nbsp; -p 11435:11435 \\
-
-&nbsp; -p 18789:18789 \\
-
-&nbsp; --name openclaw-ollama \\
-
-&nbsp; openclaw-ollama
+```
 
 
 
@@ -67,11 +57,10 @@ docker ps #find id of openclaw-ollama container
 docker exec -it \\\[container-id] sh
 openclaw onboard --install-daemon
 
-exit
+openclaw gateway --bind lan
 
-docker stop \[container-id]
 
-docker rm \[container-id]
+
 ```
 
 
@@ -105,4 +94,14 @@ http://localhost:18789/chat?token=\[token]
 \#### Ollama endpoint
 
 curl localhost:11435
+
+
+
+\### 8. Approve device
+
+
+
+openclaw devices list  
+
+openclaw devices approve \[device-id]  
 
