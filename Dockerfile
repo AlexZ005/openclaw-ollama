@@ -17,12 +17,11 @@ RUN npm install -g openclaw@latest
 
 # 3. Create a startup script to handle both services
 RUN echo '#!/bin/bash\n\
-ollama serve &\n\
-ollama run qwen3:8b\n\
+openclaw gateway --bind lan\n\
 wait' > /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 # Expose the ports you defined
-EXPOSE 11435 18789
+EXPOSE 18789
 
 # Start the services
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
